@@ -25,7 +25,7 @@ Map { font-directory: url(./fonts); }
           "Khmer OS Metal Chrieng Regular", "Mukti Narrow Regular", "Gargi Regular", "TSCu_Paranar Regular",
           "Tibetan Machine Uni Regular", "Droid Sans Fallback Regular", "Unifont Medium";
 
-@sans_lt_italic: "Open Sans Oblique", "DejaVu Sans Oblique", "Arundina Italic", "TSCu_Paranar Italic",
+@sans_lt_italic: "Open Sans Italic", "DejaVu Sans Oblique", "Arundina Italic", "TSCu_Paranar Italic",
                  "DejaVu Sans Book", "Arundina Regular", "Padauk Regular", "Khmer OS Metal Chrieng Regular",
                  "Mukti Narrow Regular", "Gargi Regular", "TSCu_Paranar Regular", "Tibetan Machine Uni Regular",
                  "Droid Sans Fallback Regular", "Unifont Medium";

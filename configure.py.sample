@@ -14,14 +14,14 @@ config["name"] = "OSM Bright"
 
 # The absolute path to your MapBox projects directory. You should 
 # not need to change this unless you have configured TileMill specially
-config["path"] = path.expanduser("~/Documents/MapBox/project")
+config["path"] = "/tmp"
 
 # PostGIS connection setup
 # Leave empty for Mapnik defaults. The only required parameter is dbname.
 config["postgis"]["host"]     = ""
 config["postgis"]["port"]     = ""
 config["postgis"]["dbname"]   = "osm"
-config["postgis"]["user"]     = ""
+config["postgis"]["user"]     = "osm"
 config["postgis"]["password"] = ""
 
 # Increase performance if you are only rendering a particular area by
@@ -45,4 +45,4 @@ config["land-low"] = path.join(getcwd(), "shp/simplified-land-polygons-complete-
 # - http://mapbox-geodata.s3.amazonaws.com/natural-earth-1.4.0/cultural/10m-populated-places-simple.zip
 #  or
 #  - http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_populated_places.zip
-config["ne_places"] = path.join(getcwd(), "shp/10m-populated-places-simple.shp")
+config["ne_places"] = path.join(getcwd(), "shp/ne_10m_populated_places/ne_10m_populated_places.shp")

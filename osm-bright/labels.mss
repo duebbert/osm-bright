@@ -255,8 +255,16 @@
 // AREA LABELS
 // =====================================================================
 
-#area_label {
+#area_label_gte_z16[zoom>=16],
+#area_label_lte_z15[zoom>=12][zoom<=15],
+#area_label_z11[zoom=11],
+#area_label_z10[zoom=10] {
+
   // Bring in labels gradually as one zooms in, bases on polygon area
+  
+  // The SQL for the different area labels is different and the
+  // important part! area_label_lte_z15 filters all areas > 80000 in SQL.
+  
   [zoom>=10][area>102400000],
   [zoom>=11][area>25600000],
   [zoom>=13][area>1600000],
@@ -325,7 +333,80 @@
     text-wrap-width: 180;
   }
 }
-   
+
+
+/* #area_label {
+  // Bring in labels gradually as one zooms in, bases on polygon area
+  [zoom>=10][area>102400000],
+  [zoom>=11][area>25600000],
+  [zoom>=13][area>1600000],
+  [zoom>=14][area>320000],
+  [zoom>=15][area>80000],
+  [zoom>=16][area>20000],
+  [zoom>=17][area>5000],
+  [zoom>=18][area>=0] {
+    text-name: "[name]";
+    text-halo-radius: 1.5;
+    text-face-name:@sans;
+    text-size: 11;
+    text-wrap-width:30;
+    text-fill: #888;
+    text-halo-fill: #fff;
+    // Specific style overrides for different types of areas:
+    [type='park'][zoom>=10] {
+      text-face-name: @sans_lt_italic;
+      text-fill: @park * 0.6;
+      text-halo-fill: lighten(@park, 10%);
+    }
+    [type='golf_course'][zoom>=10] {
+      text-fill: @sports * 0.6;
+      text-halo-fill: lighten(@sports, 10%);
+    }
+    [type='cemetery'][zoom>=10] {
+      text-fill: @cemetery * 0.6;
+      text-halo-fill: lighten(@cemetery, 10%);
+    }
+    [type='hospital'][zoom>=10] {
+      text-fill: @hospital * 0.6;
+      text-halo-fill: lighten(@hospital, 10%);
+    }
+    [type='college'][zoom>=10],
+    [type='school'][zoom>=10],
+    [type='university'][zoom>=10] {
+      text-fill: @school * 0.6;
+      text-halo-fill: lighten(@school, 10%);
+    }
+    [type='water'][zoom>=10] {
+      text-fill: @water * 0.6;
+      text-halo-fill: lighten(@water, 10%);
+    }
+  }
+  [zoom=15][area>1600000],
+  [zoom=16][area>80000],
+  [zoom=17][area>20000],
+  [zoom=18][area>5000] {
+    text-name: "[name]";
+    text-size: 13;
+    text-wrap-width: 60;
+    text-character-spacing: 1;
+    text-halo-radius: 2;
+  }
+  [zoom=16][area>1600000],
+  [zoom=17][area>80000],
+  [zoom=18][area>20000] {
+    text-size: 15;
+    text-character-spacing: 2;
+    text-wrap-width: 120;
+  }
+  [zoom>=17][area>1600000],
+  [zoom>=18][area>80000] {
+    text-size: 20;
+    text-character-spacing: 3;
+    text-wrap-width: 180;
+  }
+}
+ */   
+ 
 #poi[type='university'][zoom>=15],
 #poi[type='hospital'][zoom>=16],
 #poi[type='school'][zoom>=17],
@@ -443,18 +524,29 @@
 /* ================================================================== */
 /* ONE-WAY ARROWS
 /* ================================================================== */
-
-#motorway_label[oneway!=0][oneway!='no'][oneway!='false'][zoom>=16],
-#mainroad_label[oneway!=0][oneway!='no'][oneway!='false'][zoom>=16],
-#minorroad_label[oneway!=0][oneway!='no'][oneway!='false'][zoom>=16] {
-  marker-placement:line;
-  marker-max-error: 0.5;
-  marker-spacing: 200;
-  marker-file: url(img/icon/oneway.svg);
-  [oneway=-1] { marker-file: url(img/icon/oneway-reverse.svg); }
-  [zoom=16] { marker-transform: "scale(0.5)"; }
-  [zoom=17] { marker-transform: "scale(0.75)"; }
+#motorway_label[zoom>=16],
+#mainroad_label[zoom>=16],
+#minorroad_label[zoom>=16] {
+  [oneway = 'yes'],
+  [oneway='-1'] {
+     marker-placement:line;
+     marker-max-error: 0.5;
+     marker-spacing: 200;
+     marker-file: url(img/icon/oneway.svg);
+     [oneway='-1'] { marker-file: url(img/icon/oneway-reverse.svg); }
+     [zoom=16] { marker-transform: "scale(0.5)"; }
+     [zoom=17] { marker-transform: "scale(0.75)"; }
+  }
 }
 
+
+/* ================================================================== */
+/* TRAIN STATIONS
+/* ================================================================== */
+
+#train_stations[zoom>15]{
+  point-file:url('img/icon/rail-12.png');
+  [zoom>=17] { point-file:url('img/icon/rail-18.png'); }
+}
 
 /* ****************************************************************** */

@@ -406,7 +406,7 @@
   }
 }
  */   
- 
+
 #poi[type='university'][zoom>=15],
 #poi[type='hospital'][zoom>=16],
 #poi[type='school'][zoom>=17],
